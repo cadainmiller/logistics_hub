@@ -62,19 +62,21 @@ app.get('/signup', function(req, res){
   });
 
   app.post('/signup', urlenc, function(req, res){
-   let user = new User();
-   user.fname = req.body.firstName;
-   user.lname = req.body.lastName;
+//    let user = new User();
+//    user.fname = req.body.firstName;
+//    user.lname = req.body.lastName;
 
-    user.save(function(err){
-        if(err){
-            console.log(err);
-            return;
-        } else{pages
-            res.redirect('/');
-       }
-    });
-    return;  
+//     user.save(function(err){
+//         if(err){
+//             console.log(err);
+//             return;
+//         } else{pages
+//             res.redirect('/');
+//        }
+//     });
+//     return;  
+        console.log("Request Body: \n" + JSON.stringify(req.body));
+        res.redirect('/');
   });
   
 
