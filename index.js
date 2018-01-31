@@ -3,7 +3,8 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var path = require('path');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+const urlenc = bodyParser.urlencoded({ extended: false });
 
 mongoose.connect('mongodb://localhost/logostic');
 var db = mongoose.connection;
@@ -60,20 +61,22 @@ app.get('/signup', function(req, res){
     });
   });
 
-  app.post('/signup', function(req, res){
-   let user = new User();
-   user.fname = req.body.firstName;
-   user.lname = req.body.lastName;
+  app.post('/signup', urlenc, function(req, res){
+//    let user = new User();
+//    user.fname = req.body.firstName;
+//    user.lname = req.body.lastName;
 
-    user.save(function(err){
-        if(err){
-            console.log(err);
-            return;
-        } else{pages
-            res.redirect('/');
-       }
-    });
-    return;  
+//     user.save(function(err){
+//         if(err){
+//             console.log(err);
+//             return;
+//         } else{pages
+//             res.redirect('/');
+//        }
+//     });
+//     return;  
+        console.log("Request Body: \n" + JSON.stringify(req.body));
+        res.redirect('/');
   });
   
 
@@ -117,5 +120,7 @@ app.get('/manedituser', function(req, res) {
 });
 
 
-app.listen(8080);
-console.log('8080 is the magic port');
+app.listen(8080, () => {
+   console.log('8080 is the magic port'); 
+});
+
